@@ -25,7 +25,7 @@ class TaskServiceSpec extends WordSpec with MockFactory with Matchers {
       val createJson = json"""
         {
           "description": ${task.description},
-          "importance": ${task.importance.value}
+          "importance": ${task.priority.value}
         }"""
       val response = serve(Request[IO](POST, uri("/tasks")).withBody(createJson).unsafeRunSync())
       response.status shouldBe Status.Created
@@ -33,7 +33,7 @@ class TaskServiceSpec extends WordSpec with MockFactory with Matchers {
         {
           "id": $id,
           "description": ${task.description},
-          "importance": ${task.importance.value}
+          "importance": ${task.priority.value}
         }"""
     }
 
@@ -44,7 +44,7 @@ class TaskServiceSpec extends WordSpec with MockFactory with Matchers {
       val updateJson = json"""
         {
           "description": ${task.description},
-          "importance": ${task.importance.value}
+          "importance": ${task.priority.value}
         }"""
 
       val response = serve(Request[IO](PUT, Uri.unsafeFromString(s"/tasks/$id")).withBody(updateJson).unsafeRunSync())
@@ -53,7 +53,7 @@ class TaskServiceSpec extends WordSpec with MockFactory with Matchers {
         {
           "id": $id,
           "description": ${task.description},
-          "importance": ${task.importance.value}
+          "importance": ${task.priority.value}
         }"""
     }
 
@@ -68,7 +68,7 @@ class TaskServiceSpec extends WordSpec with MockFactory with Matchers {
         {
           "id": $id,
           "description": ${task.description},
-          "importance": ${task.importance.value}
+          "importance": ${task.priority.value}
         }"""
     }
 
@@ -87,12 +87,12 @@ class TaskServiceSpec extends WordSpec with MockFactory with Matchers {
          {
            "id": $id1,
            "description": ${task1.description},
-           "importance": ${task1.importance.value}
+           "importance": ${task1.priority.value}
          },
          {
            "id": $id2,
            "description": ${task2.description},
-           "importance": ${task2.importance.value}
+           "importance": ${task2.priority.value}
          }
         ]"""
     }

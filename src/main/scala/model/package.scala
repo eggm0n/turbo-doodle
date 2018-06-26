@@ -12,7 +12,7 @@ package object model {
     }
   }
 
-  case class Task(id: Option[Long], description: String, importance: Priority)
+  case class Task(id: Option[Long], description: String, priority: Priority)
 
   case object TaskNotFoundError
 }
